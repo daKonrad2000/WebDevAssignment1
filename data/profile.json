@@ -1,0 +1,38 @@
+{
+      "career": {
+            "desired": "ceo",
+            "suitability": 1
+      },
+      "movie": {
+            "Title": "Dan da shuang bu da",
+            "Year": "1996",
+            "Rated": "N/A",
+            "Released": "01 Sep 1996",
+            "Runtime": "78 min",
+            "Genre": "Documentary",
+            "Director": "Chen-liang Tung",
+            "Writer": "N/A",
+            "Actors": "N/A",
+            "Plot": "In 1949, the Nationalist government safely arrived in Taiwan, but the war between the Nationalists and the Communists continued to ravage the island of Kinmen. Situated between the two coasts, Kinmea was bombed by the Communist Ch...",
+            "Language": "Mandarin",
+            "Country": "Taiwan",
+            "Awards": "N/A",
+            "Poster": "N/A",
+            "Ratings": [],
+            "Metascore": "N/A",
+            "imdbRating": "N/A",
+            "imdbVotes": "N/A",
+            "imdbID": "tt0192000",
+            "Type": "movie",
+            "DVD": "N/A",
+            "BoxOffice": "N/A",
+            "Production": "N/A",
+            "Website": "N/A",
+            "Response": "True"
+      },
+      "pets": {
+            "dog": "n02097130_982.jpg",
+            "cat": "chn.jpg",
+            "duck": "182.jpg"
+      }
+}
