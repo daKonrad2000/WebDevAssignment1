@@ -1,0 +1,92 @@
+<!-- Front end or landing page for 159.352 Assignment 1
+     Modify in any way you see fit. Feel free to make it look pretty
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Psychological Profiling</title>
+        <script>
+            function get_form()
+            {
+                window.open("http://localhost:8080/form", "Psychological Analysis", "width=1080, height=720");
+            }
+
+            function view_input()
+            {
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onload = function() {
+                    let recvText = xmlHttp.responseText;
+                    document.getElementById("output_header").innerHTML = "User Input";
+                    const dataobject = JSON.parse(recvText);
+
+                    text = dataobject.name;
+                    text += " (" + dataobject.gender + ")";
+                    text += "<br>Born in " + dataobject.birthplace;
+                    text += " in the year " + dataobject.birthyear;
+                    text += "<br>Lives in " + dataobject.residence;
+                    text += "<br>Wants to be a " + dataobject.job;
+
+                    if(dataobject.hasOwnProperty("pets")) {
+                        text += "<br>Pets:<br>";
+                        for(var key in dataobject['pets']){
+                            text += dataobject.pets[key] + " ";
+                        }
+                    }
+                    if(dataobject.hasOwnProperty("message")) {
+                        text += "<br><br>" + dataobject.name + "\'s message: " + dataobject.message;
+                    }
+                    text += "<br><br>" + dataobject.name + "\'s answers: ";
+
+                    for(let n = 1; n < 21; n++) {
+                        text += "<br>Question " + n + ": " + dataobject.question[n];
+                    }
+
+                    console.log(text);
+                    document.getElementById("output").innerHTML = text;
+                }
+                xmlHttp.open("GET", "/view/input", true);
+                xmlHttp.send();
+            }
+
+            function view_profile()
+            {
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onload = function() {
+                    let recvText = xmlHttp.responseText;
+                    document.getElementById("output_header").innerHTML = "Psychological Analysis";
+                    const dataobject = JSON.parse(recvText);
+
+                    text = "Desired career: " + dataobject.career.desired;
+                    text += "<br>Suitability: " + dataobject.career.suitability;
+                    text += "<br><br>Here is a movie recommendation:";
+                    text += "<br>" + dataobject.movie.Title + "(" + dataobject.movie.Year + ")";
+                    text += "<br>Directed by " + dataobject.movie.Director + " starring " + dataobject.movie.Actors;
+                    text += "<br>Here is the <a href=\"" + dataobject.movie.Poster + "\">Poster</a>";
+
+                    if(dataobject.hasOwnProperty("pets")) {
+                        text += "<br><br>Here are some photos of your selected pets:";
+                        for(var key in dataobject['pets']){
+                            text += "<br><img src=\"data/" + dataobject.pets[key] + "\">"
+                        }
+                    }
+
+                    document.getElementById("output").innerHTML = text;
+                }
+                xmlHttp.open("GET", "/view/profile", true);
+                xmlHttp.send();
+            }
+        </script>
+    </head>
+    <!-- Javascript here or put in a separate .js file -->
+    <body>
+        <h1>Psychological Profiling</h1>
+        <p>Welcome to your psychological profile</p>
+        <!-- Put in various widges as appropriate -->
+        <input type="button" onclick="get_form()" value="Do psychological analysis">
+        <input type="button" onclick="view_input()" value="View Input">
+        <input type="button" onclick="view_profile()" value="View Psychological Profile">
+
+        <h3 id="output_header"></h3>
+        <div id="output"></div>
+    </body>
+</html>
